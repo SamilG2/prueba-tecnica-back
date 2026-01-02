@@ -1,9 +1,8 @@
 package models
 
-// Autor representa un autor con sus datos y sus libros.
 type Autor struct {
-	ID     uint    `json:"id"`
-	Name   string  `json:"name"`
-	Email  string  `json:"email"`
-	Libros []Libro `json:"libros"`
+	ID     uint    `gorm:"primaryKey;autoIncrement" json:"id"`
+	Name   string  `gorm:"not null" json:"name"`
+	Email  string  `gorm:"not null;unique" json:"email"`
+	Libros []Libro `gorm:"foreignKey:AuthorID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"libros"`
 }

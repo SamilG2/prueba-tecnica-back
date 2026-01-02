@@ -1,10 +1,10 @@
 package models
 
 type Libro struct {
-	ID          uint    `json:"id"`
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
-	Price       float64 `json:"price"`
-	AuthorID    uint    `json:"authorId"`
-	Autor       Autor   `json:"autor"`
+	ID          uint    `gorm:"primaryKey;autoIncrement" json:"id"`
+	Title       string  `gorm:"not null" json:"title"`
+	Description string  `gorm:"not null" json:"description"`
+	Price       float64 `gorm:"not null" json:"price"`
+	AuthorID    uint    `gorm:"not null" json:"authorId"`
+	Autor       *Autor  `gorm:"foreignKey:AuthorID" json:"autor"`
 }
